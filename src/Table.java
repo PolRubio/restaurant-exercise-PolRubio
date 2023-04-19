@@ -10,12 +10,12 @@ public class Table{
         this.numTable = TABLECOUNTER++;
     }
 
-    public String toString() {
-        return "Mesa " + numTable + ": " + numCustomers + " persones";
-    }
-
     public int getNumCustomers() {
         return numCustomers;
     }
-
+   
+    @Override
+    public String toString() {
+        return "Mesa " + numTable + ": " + numCustomers + " persones";
+    }
 }

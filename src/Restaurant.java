@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Restaurant {
-    protected final int MAX_SPACE = 24;
+    protected final int MAX_SPACE = 4;
     
     protected String name;
     protected ArrayList<Table> tables = new ArrayList<Table>();
@@ -39,13 +39,29 @@ public class Restaurant {
     }
 
     public void checkAvalibeSpace(int askNumOfCustomers) throws Exception {
-        if(this.getNumCustomers() + askNumOfCustomers > 24) {
-            throw new Exception("There is no space for this number of Customers");
+        if(this.tables.size() == MAX_SPACE) {
+            throw new Exception("There is no space, you have to wait to someone leave the restaurant");
         }
     }
 
     public void showTables() {
         tables.forEach(table -> System.out.println(table));
+    }
+
+    public void deleteTable(int numTable) {
+        checkNumtable(numTable);
+        tables.remove(numTable);
+    }
+
+    private void checkNumtable(int numTable) {
+        if(numTable < 0 || numTable >= tables.size()) {
+            throw new IllegalArgumentException("The table number is invalid");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "The restaurant " + name + " has " + tables.size() + " tables and " + getNumCustomers() + " customers";
     }
 
 }
