@@ -11,8 +11,8 @@ public class Restaurant {
         this.name = name;
     }
 
-    private void checkName(String name2) {
-        if(name2 == null || name2.isEmpty()) {
+    private void checkName(String name) {
+        if(name == null || name.isEmpty()) {
             throw new IllegalArgumentException("El nom del restaurant no pot ser null ni buit");
         }
     }
@@ -30,30 +30,37 @@ public class Restaurant {
     }
 
     public void addNewCustomers(int num) throws Exception {
-        checkAvalibeSpace(num);
-        tables.add(new Table(num));
+        if(num > 0){
+            checkAvailableSpace();
+            tables.add(new Table());
+            // addNewCustomers(tables.get(-1).addCustomers(num));
+            addNewCustomers(tables.get(tables.size()-1).addCustomers(num));
+        }
     }   
     
-    public boolean hasSpaceAvalibe(){
+    public boolean hasSpaceAvailable(){
         return this.tables.size() < MAX_SPACE;
     }
 
-    public void checkAvalibeSpace(int askNumOfCustomers) throws Exception {
+    public void checkAvailableSpace() throws Exception {
         if(this.tables.size() == MAX_SPACE) {
             throw new Exception("No hi ha espai disponible, el restaurant està ple, haureu d'esperar a que algú surti");
         }
     }
 
-    public void showTables() {
-        tables.forEach(table -> System.out.println(table));
+    public String showTables() {
+        String tablesString = "";
+        for (Table table : tables)
+            tablesString += table;
+        return tablesString;
     }
 
     public void deleteTable(int numTable) {
-        checkNumtable(numTable);
+        checkNumTable(numTable);
         tables.remove(numTable);
     }
 
-    private void checkNumtable(int numTable) {
+    private void checkNumTable(int numTable) {
         if(numTable < 0 || numTable >= tables.size()) {
             throw new IllegalArgumentException("El numero de taula no pot ser negatiu ni superior a " + tables.size() + " taulas");
         }
@@ -63,5 +70,4 @@ public class Restaurant {
     public String toString() {
         return "El restaurant " + name + " té " + tables.size() + " taules i " + getNumCustomers() + " clients";
     }
-
 }

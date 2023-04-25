@@ -3,12 +3,12 @@ import java.util.Scanner;
 public class Main {
 
     static Scanner sc = new Scanner(System.in);
-    private static boolean cont = true;
-
+    
     public static void main(String[] args) throws Exception {
         Restaurant restaurant = new Restaurant(askRestaurantName());
+        boolean cont = true;
         while(cont)
-            askCustomer(restaurant);
+            cont = askCustomer(restaurant);
     }
 
     public static String askRestaurantName() {
@@ -16,12 +16,12 @@ public class Main {
         return sc.nextLine();
     }
 
-    private static void askCustomer(Restaurant restaurant) throws Exception {
+    private static boolean askCustomer(Restaurant restaurant) throws Exception {
         System.out.print("Que vols fer?\n1. Afegir una nova taula\n2. Eliminar una taula\n3. Mostrar informació del restaurant\n4. Sortir\nEscull una opció: ");
-        doAction(restaurant, sc.nextInt());
+        return doAction(restaurant, sc.nextInt());
     }
 
-    private static void doAction(Restaurant restaurant, int option) throws Exception {
+    private static boolean doAction(Restaurant restaurant, int option) throws Exception {
         switch (option) {
             case 1:
                 addCustomers(restaurant);
@@ -30,25 +30,25 @@ public class Main {
                 deleteTable(restaurant);
                 break;
             case 3:
-                restaurantInfo(restaurant);
+                printRestaurantInfo(restaurant);
                 break;
             case 4:
                 System.out.println("Adeu!");
-                cont = false;
-                break;
+                return false;
             default:
                 System.out.println("Opció incorrectas");
                 break;
         }
+        return true;
     }
 
-    private static void restaurantInfo(Restaurant restaurant) {
+    private static void printRestaurantInfo(Restaurant restaurant) {
         System.out.println(restaurant);
     }
 
     private static void deleteTable(Restaurant restaurant) {
         restaurant.deleteTable(askTable(restaurant));
-        restaurant.showTables();
+        System.out.println(restaurant.showTables());
     }
 
     private static int askTable(Restaurant restaurant) {
@@ -57,13 +57,11 @@ public class Main {
     }
 
     public static void addCustomers(Restaurant restaurant){
-        if(restaurant.hasSpaceAvalibe()) {
-            try{
-                restaurant.addNewCustomers(askNumOfCustomers());
-                restaurant.showTables();
-            }catch(Exception e) {
-                System.out.println(e.getMessage());
-            }
+        try{
+            restaurant.addNewCustomers(askNumOfCustomers());
+            restaurant.showTables();
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
         }
     }
     
