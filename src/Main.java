@@ -68,7 +68,7 @@ public class Main {
     }
     
     private static int askNumOfCustomers() {
-        System.out.print("How many Customers are in your table? ");
+        System.out.print("How many Customers are in your new table? ");
         return sc.nextInt();
     }
 }

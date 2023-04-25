@@ -35,7 +35,7 @@ public class Restaurant {
     }   
     
     public boolean hasSpaceAvalibe(){
-        return this.getNumCustomers() < MAX_SPACE;
+        return this.tables.size() < MAX_SPACE;
     }
 
     public void checkAvalibeSpace(int askNumOfCustomers) throws Exception {
