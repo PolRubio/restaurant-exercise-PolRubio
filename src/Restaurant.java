@@ -13,7 +13,7 @@ public class Restaurant {
 
     private void checkName(String name2) {
         if(name2 == null || name2.isEmpty()) {
-            throw new IllegalArgumentException("The name of the restaurant can't be empty");
+            throw new IllegalArgumentException("El nom del restaurant no pot ser null ni buit");
         }
     }
 
@@ -40,7 +40,7 @@ public class Restaurant {
 
     public void checkAvalibeSpace(int askNumOfCustomers) throws Exception {
         if(this.tables.size() == MAX_SPACE) {
-            throw new Exception("There is no space, you have to wait to someone leave the restaurant");
+            throw new Exception("No hi ha espai disponible, el restaurant està ple, haureu d'esperar a que algú surti");
         }
     }
 
@@ -55,13 +55,13 @@ public class Restaurant {
 
     private void checkNumtable(int numTable) {
         if(numTable < 0 || numTable >= tables.size()) {
-            throw new IllegalArgumentException("The table number is invalid");
+            throw new IllegalArgumentException("El numero de taula no pot ser negatiu ni superior a " + tables.size() + " taulas");
         }
     }
 
     @Override
     public String toString() {
-        return "The restaurant " + name + " has " + tables.size() + " tables and " + getNumCustomers() + " customers";
+        return "El restaurant " + name + " té " + tables.size() + " taules i " + getNumCustomers() + " clients";
     }
 
 }

@@ -23,6 +23,6 @@ public class Table{
    
     @Override
     public String toString() {
-        return "Mesa " + numTable + ": " + numCustomers + " persones";
+        return "Taula " + numTable + ": " + numCustomers + " persones";
     }
 }

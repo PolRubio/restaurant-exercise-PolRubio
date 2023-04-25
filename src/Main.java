@@ -12,12 +12,12 @@ public class Main {
     }
 
     public static String askRestaurantName() {
-        System.out.print("What is the name of the restaurant? ");
+        System.out.print("Quin és el nom del restaurant? ");
         return sc.nextLine();
     }
 
     private static void askCustomer(Restaurant restaurant) throws Exception {
-        System.out.print("\n\nWhat do you want to do?\n1. Add new table\n2. Delete a table\n3. Show Restaurant info\n4. Exit\nChoose an option: ");
+        System.out.print("Que vols fer?\n1. Afegir una nova taula\n2. Eliminar una taula\n3. Mostrar informació del restaurant\n4. Sortir\nEscull una opció: ");
         doAction(restaurant, sc.nextInt());
     }
 
@@ -33,11 +33,11 @@ public class Main {
                 restaurantInfo(restaurant);
                 break;
             case 4:
-                System.out.println("Goodbye!");
+                System.out.println("Adeu!");
                 cont = false;
                 break;
             default:
-                System.out.println("Invalid option");
+                System.out.println("Opció incorrectas");
                 break;
         }
     }
@@ -52,7 +52,7 @@ public class Main {
     }
 
     private static int askTable(Restaurant restaurant) {
-        System.out.print("Which table do you want to delete? ");
+        System.out.print("Quina taula vols eliminar? ");
         return sc.nextInt();
     }
 
@@ -68,7 +68,7 @@ public class Main {
     }
     
     private static int askNumOfCustomers() {
-        System.out.print("How many Customers are in your new table? ");
+        System.out.print("Quantes persones sereu a la taula? ");
         return sc.nextInt();
     }
 }
