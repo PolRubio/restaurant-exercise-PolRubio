@@ -30,12 +30,15 @@ public class Restaurant {
     }
 
     public void addNewCustomers(int num) throws Exception {
-        if(num > 0){
-            checkAvailableSpace();
-            tables.add(new Table());
-            // addNewCustomers(tables.get(-1).addCustomers(num));
-            addNewCustomers(tables.get(tables.size()-1).addCustomers(num));
-        }
+        if(num == 0) return;
+
+        checkAvailableSpace();
+        
+        Table table = new Table();
+        num = table.addCustomers(num);
+        tables.add(table);
+
+        addNewCustomers(num);
     }   
     
     public boolean hasSpaceAvailable(){

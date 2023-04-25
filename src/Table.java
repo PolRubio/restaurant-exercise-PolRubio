@@ -14,13 +14,12 @@ public class Table{
     }
 
     public int addCustomers(int numCustomers) {
-        if(numCustomers > MAX_SPACE){
+        this.numCustomers = numCustomers;
+
+        if(this.numCustomers > MAX_SPACE)
             this.numCustomers = MAX_SPACE;
-            return this.numCustomers - MAX_SPACE;
-        }
-        this.numCustomers += numCustomers;
-        return 0;
         
+        return numCustomers - MAX_SPACE;
     }
     
     public static boolean checkNumCustomers(int numCustomers) {
